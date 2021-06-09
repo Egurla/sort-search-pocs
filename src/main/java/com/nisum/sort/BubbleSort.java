@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.nisum.bean.Person;
+
 public class BubbleSort {
 
 	public List<Person> bubbleSort(List<Person> persons, boolean isDescendingOrder) {

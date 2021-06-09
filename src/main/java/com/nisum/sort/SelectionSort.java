@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.nisum.bean.Person;
+
 public class SelectionSort {
 	public List<Person> SelectionSort(List<Person> persons, boolean isDescendingOrder) {
 		List<Person> distinct = removeDuplicates(persons);
