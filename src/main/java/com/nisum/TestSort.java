@@ -14,7 +14,15 @@ import com.nisum.sort.SelectionSort;
 public class TestSort {
 	public static void main(String[] args) {
 
-		Comparator<Person> comparator = null;
+		Comparator<Person> comparator = new Comparator<Person>() {
+
+			@Override
+			public int compare(Person o1, Person o2) {
+				
+				return o1.getFirstName().compareTo(o2.getFirstName());
+			}
+			
+		};
 		boolean isDescendingOrder = true;
 		List<Person> personlist = new ArrayList<Person>();
 
@@ -27,7 +35,7 @@ public class TestSort {
 		personlist.add(new Person(101, 12343234, "kumar", "oraging"));
 
 		// Bubble sorting
-/*
+
 		BubbleSort bubnleSort = new BubbleSort();
 		System.out.println("--------Bubble sorting-----------------");
 		List<Person> listOfpersons = bubnleSort.bubbleSort(personlist, isDescendingOrder);
@@ -58,7 +66,7 @@ System.out.println("------------------------------------------------------------
 		for (Person p : selectionsortUsingComparator) {
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
-		/*
+		
 
 		// insertion Sorting
 		InsertionSort insertionsort = new InsertionSort();
@@ -74,7 +82,7 @@ System.out.println("------------------------------------------------------------
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
 
-		*/
+	
 		// quickSort
 		QuickSort quicksort = new QuickSort();
 		System.out.println("------------------------QUICK SORTING-----------------");
@@ -88,6 +96,7 @@ System.out.println("------------------------------------------------------------
 		for (Person p : quicks) {
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
+		
 
 	}
 	}

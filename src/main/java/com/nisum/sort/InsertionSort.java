@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.omg.CORBA.OMGVMCID;
@@ -17,17 +18,26 @@ public class InsertionSort {
 		return sort(distinct, isDescendingOrder);
 	}
 
-	public List<Person> sort(List<Person> distinctpersonData, boolean isDescendingOrder) {
+	public List<Person> sort(List<Person> distinct, boolean isDescendingOrder) {
 
-		if (!isDescendingOrder) {
-			System.out.println("calling  insertionSortPerson method");
-			List<Person> per = InsertionSort.insertionSortPerson(distinctpersonData);
-			Collections.reverse(per);
-			return per;
-		} else {
-			return InsertionSort.insertionSortPerson(distinctpersonData);
+		Predicate<Integer> sortPred = (i) -> i < 1;
+		Person person;
+		if (isDescendingOrder) {
+			sortPred = (i) -> i > 1;
 		}
+		Person key_i;
+		int n = distinct.size();
 
+		for (int j = 1; j < n; j++) {
+			key_i = distinct.get(j);
+			int i = j - 1;
+			while ((i > -1) && (sortPred.test((distinct.get(i).compareTo(key_i))))) {
+				distinct.set(i + 1, distinct.get(i));
+				i--;
+			}
+			distinct.set(i + 1, key_i);
+		}
+		return distinct;
 	}
 
 	public List<Person> removeDuplicates(List<Person> persons) {
@@ -44,51 +54,25 @@ public class InsertionSort {
 
 	public List<Person> sort(List<Person> distinct, Comparator<Person> comparator, boolean isDescendingOrder) {
 
+		Predicate<Integer> sortPred = (i) -> i < 1;
+		Person person;
 		if (isDescendingOrder) {
-			Person key_i;
-			int n = distinct.size();
-			
-			for (int j = 1; j < n; j++) {
-				key_i = distinct.get(j);
-				int i = j - 1;
-				while ((i > -1) && ((distinct.get(i).firstName.compareTo(key_i.firstName)) > 1)) {
-					distinct.set(i + 1, distinct.get(i));
-					i--;
-				}
-				distinct.set(i + 1, key_i);
-			}
-			return distinct;
-		} else {
-			Person key_i;
-			int n = distinct.size();
-			System.out.println(" insertionSort ");
-			for (int j = 1; j < n; j++) {
-				key_i = distinct.get(j);
-				int i = j - 1;
-				while ((i > -1) && (((key_i.firstName).compareTo(distinct.get(i).firstName)) < 1)) {
-					distinct.set(i + 1, distinct.get(i));
-					i--;
-				}
-				distinct.set(i + 1, key_i);
-			}
+			sortPred = (i) -> i > 1;
 		}
-			return distinct;			
-		
-	}
-
-	protected static List<Person> insertionSortPerson(List<Person> distinct) {
 		Person key_i;
 		int n = distinct.size();
-		
+
 		for (int j = 1; j < n; j++) {
 			key_i = distinct.get(j);
 			int i = j - 1;
-			while ((i > -1) && ((distinct.get(i).compareTo(key_i)) > 1)) {
+			while ((i > -1) && (sortPred.test((comparator.compare(distinct.get(i), (key_i)))))) {
 				distinct.set(i + 1, distinct.get(i));
 				i--;
 			}
 			distinct.set(i + 1, key_i);
 		}
 		return distinct;
+
 	}
+
 }
