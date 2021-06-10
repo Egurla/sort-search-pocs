@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.nisum.bean.Person;
 
 public class SelectionSort {
-	public List<Person> SelectionSort(List<Person> persons, boolean isDescendingOrder) {
+	public List<Person> selectionSort(List<Person> persons, boolean isDescendingOrder) {
 		List<Person> distinct = removeDuplicates(persons);
 		return sort(distinct, isDescendingOrder);
 	}
@@ -45,19 +45,47 @@ public class SelectionSort {
 	public List<Person> sort(List<Person> distinct, Comparator<Person> comparator, boolean isDescendingOrder) {
 
 		if (isDescendingOrder) {
-			Collections.sort(distinct, new Comparator<Person>() {
+			Person person;
+			int minIndex;
+			boolean sorted = false;
+			System.out.println(" INSERTION ORDER selectionSortArrayList ");
+			while (!sorted) {
+				sorted = true;
+				for (int i = 0; i < distinct.size() - 1; i++) {
+					minIndex = i;
+					if (distinct.get(i).firstName.compareTo(distinct.get(i + 1).firstName) > 0) {
+						minIndex = i + 1;
+						sorted = false;
+					}
 
-				@Override
-				public int compare(Person o1, Person o2) {
-					return o1.firstName.compareTo(o1.firstName);
-
+					person = distinct.get(i);
+					distinct.set(i, distinct.get(minIndex));
+					distinct.set(minIndex, person);
 				}
 
-			});
+			}
 
 		} else {
+ System.out.println("sorted order");
+			Person person;
+			int minIndex;
+			boolean sorted = false;
+			while (!sorted) {
+				sorted = true;
+				for (int i = 0; i < distinct.size() - 1; i++) {
+					minIndex = i;
+					if (distinct.get(i+1).firstName.compareTo(distinct.get(i).firstName) > 0) {
+						minIndex = i + 1;
+						sorted = false;
+					}
 
-			distinct.sort((o1, o2) -> o2.firstName.compareTo(o1.firstName));
+					person = distinct.get(i);
+					distinct.set(i, distinct.get(minIndex));
+					distinct.set(minIndex, person);
+				}
+
+			}
+			// distinct.sort((o1, o2) -> o2.firstName.compareTo(o1.firstName));
 		}
 		return distinct;
 	}
@@ -66,7 +94,7 @@ public class SelectionSort {
 		Person person;
 		int minIndex;
 		boolean sorted = false;
-		System.out.println(" INSERTION ORDER selectionSortArrayList ");
+
 		while (!sorted) {
 			sorted = true;
 			for (int i = 0; i < distinct.size() - 1; i++) {
@@ -75,7 +103,7 @@ public class SelectionSort {
 					minIndex = i + 1;
 					sorted = false;
 				}
-				System.out.println(distinct.get(minIndex).id);
+
 				person = distinct.get(i);
 				distinct.set(i, distinct.get(minIndex));
 				distinct.set(minIndex, person);

@@ -12,7 +12,7 @@ import com.nisum.bean.Person;
 
 public class InsertionSort {
 	public List<Person> insertionSort(List<Person> persons, boolean isDescendingOrder) {
-		System.out.println("using insertionsort");
+
 		List<Person> distinct = removeDuplicates(persons);
 		return sort(distinct, isDescendingOrder);
 	}
@@ -20,16 +20,14 @@ public class InsertionSort {
 	public List<Person> sort(List<Person> distinctpersonData, boolean isDescendingOrder) {
 
 		if (!isDescendingOrder) {
-			System.out.println("reverse order");
+			System.out.println("calling  insertionSortPerson method");
 			List<Person> per = InsertionSort.insertionSortPerson(distinctpersonData);
 			Collections.reverse(per);
 			return per;
 		} else {
-			System.out.println("before insertion sorting");
-			
 			return InsertionSort.insertionSortPerson(distinctpersonData);
 		}
-		
+
 	}
 
 	public List<Person> removeDuplicates(List<Person> persons) {
@@ -47,35 +45,49 @@ public class InsertionSort {
 	public List<Person> sort(List<Person> distinct, Comparator<Person> comparator, boolean isDescendingOrder) {
 
 		if (isDescendingOrder) {
-			Collections.sort(distinct, new Comparator<Person>() {
-
-				@Override
-				public int compare(Person o1, Person o2) {
-					return o1.firstName.compareTo(o1.firstName);
-
+			Person key_i;
+			int n = distinct.size();
+			
+			for (int j = 1; j < n; j++) {
+				key_i = distinct.get(j);
+				int i = j - 1;
+				while ((i > -1) && ((distinct.get(i).firstName.compareTo(key_i.firstName)) > 1)) {
+					distinct.set(i + 1, distinct.get(i));
+					i--;
 				}
-
-			});
-
+				distinct.set(i + 1, key_i);
+			}
+			return distinct;
 		} else {
-
-			distinct.sort((o1, o2) -> o2.firstName.compareTo(o1.firstName));
+			Person key_i;
+			int n = distinct.size();
+			System.out.println(" insertionSort ");
+			for (int j = 1; j < n; j++) {
+				key_i = distinct.get(j);
+				int i = j - 1;
+				while ((i > -1) && (((key_i.firstName).compareTo(distinct.get(i).firstName)) < 1)) {
+					distinct.set(i + 1, distinct.get(i));
+					i--;
+				}
+				distinct.set(i + 1, key_i);
+			}
 		}
-		return distinct;
+			return distinct;			
+		
 	}
 
 	protected static List<Person> insertionSortPerson(List<Person> distinct) {
 		Person key_i;
 		int n = distinct.size();
-		System.out.println(" insertionSort ");
+		
 		for (int j = 1; j < n; j++) {
 			key_i = distinct.get(j);
 			int i = j - 1;
-			while ((i > -1) && ((distinct.get(i).compareTo(key_i)) == 1)) {
-	            distinct.set(i+1, distinct.get(i));
-	            i--;
-	        }
-			distinct.set(i+1, key_i);
+			while ((i > -1) && ((distinct.get(i).compareTo(key_i)) > 1)) {
+				distinct.set(i + 1, distinct.get(i));
+				i--;
+			}
+			distinct.set(i + 1, key_i);
 		}
 		return distinct;
 	}

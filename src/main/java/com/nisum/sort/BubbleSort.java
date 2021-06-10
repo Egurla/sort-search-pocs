@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import com.nisum.bean.Person;
 
-public class BubbleSort {
+public class BubbleSort{
 
 	public List<Person> bubbleSort(List<Person> persons, boolean isDescendingOrder) {
 		List<Person> distinct = removeDuplicates(persons);
@@ -19,16 +19,15 @@ public class BubbleSort {
 
 		if (!isDescendingOrder) {
 			System.out.println("reverse order");
-		List<Person> per=BubbleSort.bubbleSortingPerson(distinctpersonData);
-		Collections.reverse(per);
-		return per;
-			//Collections.sort(distinctpersonData, Collections.reverseOrder());
+			List<Person> per = BubbleSort.bubbleSortingPerson(distinctpersonData);
+			Collections.reverse(per);
+			return per;
+			// Collections.sort(distinctpersonData, Collections.reverseOrder());
 		} else {
-			System.out.println("before bubble sorting");
-			//Collections.sort(distinctpersonData);
+			// Collections.sort(distinctpersonData);
 			return BubbleSort.bubbleSortingPerson(distinctpersonData);
 		}
-		//return distinctpersonData;
+		
 	}
 
 	public List<Person> removeDuplicates(List<Person> persons) {
@@ -45,44 +44,56 @@ public class BubbleSort {
 
 	public List<Person> sort(List<Person> distinct, Comparator<Person> comparator, boolean isDescendingOrder) {
 
-		
-		if (isDescendingOrder) {
-			Collections.sort(distinct, new Comparator<Person>() {
-
-				@Override
-				public int compare(Person o1, Person o2) {
-					return o1.firstName.compareTo(o1.firstName);
-
-				}
-
-			});
-
+		if (!isDescendingOrder) {
+			Person person;
+			boolean sorted = false;
+			while (!sorted) {
+				sorted = true;
+				for (int i = 0; i < distinct.size() - 1; i++)
+					if ((distinct.get(i).firstName).compareTo(distinct.get(i + 1).firstName) > 0) {
+						person = distinct.get(i);
+						distinct.set(i, distinct.get(i + 1));
+						distinct.set(i + 1, person);
+						sorted = false;
+					}
+			}
 		} else {
+			Person person;
+			boolean sorted = false;
+			while (!sorted) {
+				sorted = true;
+				for (int i = 0; i < distinct.size() - 1; i++)
+					if ((distinct.get(i + 1).firstName).compareTo(distinct.get(i).firstName) > 0) {
+						person = distinct.get(i);
+						distinct.set(i, distinct.get(i + 1));
+						distinct.set(i + 1, person);
+						sorted = false;
+					}
+			}
 
-			distinct.sort((o1, o2) -> o2.firstName.compareTo(o1.firstName));
 		}
 		return distinct;
+
 	}
 
 	protected static List<Person> bubbleSortingPerson(List<Person> distinct) {
-	Person person;
-	boolean sorted=false;
-	System.out.println("bubble sorung bubbleSortArrayList ");
-	while(!sorted) {
-		sorted=true;
-		for(int i=0;i<distinct.size()-1;i++)
-			 if (distinct.get(i).compareTo(distinct.get(i + 1)) > 0) {
-			person=distinct.get(i);
-			distinct.set(i, distinct.get(i+1));
-			distinct.set(i+1, person);
-			sorted=false;
+		Person person;
+		boolean sorted = false;
+		System.out.println("bubble sorung bubbleSortArrayList ");
+		while (!sorted) {
+			sorted = true;
+			for (int i = 0; i < distinct.size() - 1; i++)
+				if ((distinct.get(i)).compareTo(distinct.get(i + 1)) > 0) {
+					person = distinct.get(i);
+					distinct.set(i, distinct.get(i + 1));
+					distinct.set(i + 1, person);
+					sorted = false;
+				}
+			// System.out.println(distinct);
 		}
-		//System.out.println(distinct);
-	}
-	System.out.println(distinct);
-	System.out.println("=============");
-	return distinct;
-		
-	
+		System.out.println(distinct);
+		System.out.println("=============");
+		return distinct;
+
 	}
 }
