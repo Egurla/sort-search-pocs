@@ -97,10 +97,15 @@ public class TestSort {
 		}
 
 		System.out.println("------------------------MERGE SORTING-----------------");
+<<<<<<< HEAD
 
 		MergeSort mergeSortt = new MergeSort();
 
 		mergeSortt.mergeSort(personlist, isDescendingOrder);
+=======
+		
+		MergeSort mergeSortt=new MergeSort();
+>>>>>>> 10f57715e1137e069ca85f3d6550b1c33fd13878
 		List<Person> mergesortlist = mergeSortt.mergeSort(personlist, isDescendingOrder);
 		for (Person p : mergesortlist) {
 			System.out.println(p.id + " " + p.firstName + " " + p.adharNumber);
