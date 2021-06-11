@@ -102,7 +102,7 @@ System.out.println("------------------------------------------------------------
 		
 		MergeSort mergeSortt=new MergeSort();
 		
-		mergeSortt.mergeSort(personlist, isDescendingOrder);
+		
 		List<Person> mergesortlist = mergeSortt.mergeSort(personlist, isDescendingOrder);
 		for (Person p : mergesortlist) {
 			System.out.println(p.id + " " + p.firstName + " " + p.adharNumber);
