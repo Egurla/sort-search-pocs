@@ -1,5 +1,6 @@
 package com.nisum.search;
 
+import java.awt.Dialog;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -10,25 +11,32 @@ import com.nisum.bean.PersonComp;
 
 public class LinearSearch {
 
-	public int linearSearch(List<Person> persons) {
+	public int linearSearch(List<Person> persons,List<Person> item) {
 		System.out.println("using insertionsort");
 		List<Person> distinct = removeDuplicates(persons);
-		return search(distinct);
+		return search(distinct,item);
 	}
 
-	private int search(List<Person> distinct) {
+	private int search(List<Person> distinct,List<Person> item) {
 		Collections.sort(distinct);
 		
-		 Collections
-
-		return search;
+		int num=distinct.size();
+		int counter;
+		for (counter = 0; counter < num; counter++)
+	      {
+	         if (distinct.get(counter) == item) 
+	         {
+	           System.out.println(item+" is present at location "+(counter+1));
+	           break;
+	         }
+	      }
+	      if (counter == num) {
+	        System.out.println(item + " doesn't exist in list.");
+	      }
+		return item.indexOf(item);
+	
 	}
-	/*
-	 * private List<Person> search(List<Person> distinct,int index){ List<Person>
-	 * personlist=Collections.sea(distinct, distinct.get(4)); return distinct;
-	 * 
-	 * }
-	 */
+	
 
 	private List<Person> removeDuplicates(List<Person> persons) {
 		Set<Person> uniqPersonData = persons.stream().distinct().collect(Collectors.toSet());

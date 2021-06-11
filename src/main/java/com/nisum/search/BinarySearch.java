@@ -22,12 +22,6 @@ public class BinarySearch {
 
 		return search;
 	}
-	/*
-	 * private List<Person> search(List<Person> distinct,int index){ List<Person>
-	 * personlist=Collections.sea(distinct, distinct.get(4)); return distinct;
-	 * 
-	 * }
-	 */
 
 	private List<Person> removeDuplicates(List<Person> persons) {
 		Set<Person> uniqPersonData = persons.stream().distinct().collect(Collectors.toSet());

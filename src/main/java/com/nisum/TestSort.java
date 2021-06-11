@@ -19,10 +19,10 @@ public class TestSort {
 
 			@Override
 			public int compare(Person o1, Person o2) {
-				
+
 				return o1.getFirstName().compareTo(o2.getFirstName());
 			}
-			
+
 		};
 		boolean isDescendingOrder = true;
 		List<Person> personlist = new ArrayList<Person>();
@@ -46,7 +46,7 @@ public class TestSort {
 		}
 
 		List<Person> listofPersonUsingComparator = bubnleSort.bubbleSort(personlist, comparator, isDescendingOrder);
-System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("------------------------------------------------------------------------------------");
 		for (Person p : listofPersonUsingComparator) {
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
@@ -67,7 +67,6 @@ System.out.println("------------------------------------------------------------
 		for (Person p : selectionsortUsingComparator) {
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
-		
 
 		// insertion Sorting
 		InsertionSort insertionsort = new InsertionSort();
@@ -83,7 +82,6 @@ System.out.println("------------------------------------------------------------
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
 
-	
 		// quickSort
 		QuickSort quicksort = new QuickSort();
 		System.out.println("------------------------QUICK SORTING-----------------");
@@ -97,11 +95,11 @@ System.out.println("------------------------------------------------------------
 		for (Person p : quicks) {
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
-		
+
 		System.out.println("------------------------MERGE SORTING-----------------");
-		
-		MergeSort mergeSortt=new MergeSort();
-		
+
+		MergeSort mergeSortt = new MergeSort();
+
 		mergeSortt.mergeSort(personlist, isDescendingOrder);
 		List<Person> mergesortlist = mergeSortt.mergeSort(personlist, isDescendingOrder);
 		for (Person p : mergesortlist) {
@@ -114,6 +112,4 @@ System.out.println("------------------------------------------------------------
 			System.out.println(p.id + " " + p.firstName + " " + p.adharNumber);
 		}
 	}
-	}
-
-
+}

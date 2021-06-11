@@ -17,24 +17,24 @@ public class MergeSort {
 
 	public List<Person> sort(List<Person> distinct, boolean isDescendingOrder) {
 		int from = distinct.indexOf(distinct.get(0));
-		int to = distinct.size()-1;
+		int to = distinct.size() - 1;
 		merge(distinct, isDescendingOrder, from, to);
 		return distinct;
 	}
 
 	private void merge(List<Person> distinct, boolean isDescendingOrder, int from, int to) {
 		int mid = (from + to) / 2;
-		if(from<to) {
-		
-		merge(distinct,  isDescendingOrder, from, mid);
-		merge(distinct, isDescendingOrder, mid + 1, to);
+		if (from < to) {
+
+			merge(distinct, isDescendingOrder, from, mid);
+			merge(distinct, isDescendingOrder, mid + 1, to);
 		}
-		mergeS(distinct, from, mid, to,isDescendingOrder);
-		
+		mergeS(distinct, from, mid, to, isDescendingOrder);
+
 	}
 
 	private void mergeS(List<Person> distinct, int from, int mid, int to, boolean isDescendingOrder) {
-		
+
 		int n = to - from + 1;
 		Object[] values = new Object[n];
 
@@ -50,8 +50,7 @@ public class MergeSort {
 			if (isDescendingOrder) {
 				sortPred = (i) -> i > 0;
 			}
-			if (sortPred.test((distinct.get(fromValue)).compareTo(distinct.get(middleValue))))
-			{
+			if (sortPred.test((distinct.get(fromValue)).compareTo(distinct.get(middleValue)))) {
 				values[index] = distinct.get(fromValue);
 				fromValue++;
 			} else {
@@ -90,7 +89,7 @@ public class MergeSort {
 
 	public List<Person> sort(List<Person> distinct, Comparator<Person> comparator, boolean isDescendingOrder) {
 		int from = distinct.indexOf(distinct.get(0));
-		int to = distinct.size()-1;
+		int to = distinct.size() - 1;
 		merge(distinct, comparator, isDescendingOrder, from, to);
 
 		return distinct;
@@ -101,15 +100,16 @@ public class MergeSort {
 			int to) {
 
 		int mid = (from + to) / 2;
-		if(from<to) {
-		merge(distinct, comparator, isDescendingOrder, from, mid);
-		merge(distinct, comparator, isDescendingOrder, mid + 1, to);
+		if (from < to) {
+			merge(distinct, comparator, isDescendingOrder, from, mid);
+			merge(distinct, comparator, isDescendingOrder, mid + 1, to);
 		}
-		mergeS(distinct, from, mid, comparator, to,isDescendingOrder);
+		mergeS(distinct, from, mid, comparator, to, isDescendingOrder);
 
 	}
 
-	private void mergeS(List<Person> distinct, int from, int mid, Comparator<Person> comparator, int to,boolean isDescendingOrder) {
+	private void mergeS(List<Person> distinct, int from, int mid, Comparator<Person> comparator, int to,
+			boolean isDescendingOrder) {
 		int n = to - from + 1;
 		Object[] values = new Object[n];
 
