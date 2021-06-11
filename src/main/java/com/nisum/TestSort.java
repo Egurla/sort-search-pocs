@@ -8,6 +8,7 @@ import java.util.List;
 import com.nisum.bean.Person;
 import com.nisum.sort.BubbleSort;
 import com.nisum.sort.InsertionSort;
+import com.nisum.sort.MergeSort;
 import com.nisum.sort.QuickSort;
 import com.nisum.sort.SelectionSort;
 
@@ -97,7 +98,21 @@ System.out.println("------------------------------------------------------------
 			System.out.println(p.firstName + " " + p.lastName + " " + p.adharNumber + " " + p.id);
 		}
 		
+		System.out.println("------------------------MERGE SORTING-----------------");
+		
+		MergeSort mergeSortt=new MergeSort();
+		
+		mergeSortt.mergeSort(personlist, isDescendingOrder);
+		List<Person> mergesortlist = mergeSortt.mergeSort(personlist, isDescendingOrder);
+		for (Person p : mergesortlist) {
+			System.out.println(p.id + " " + p.firstName + " " + p.adharNumber);
+		}
 
+		System.out.println("--------------------------------------");
+		List<Person> mergesortlistComp = mergeSortt.mergeSort(personlist, comparator, isDescendingOrder);
+		for (Person p : mergesortlistComp) {
+			System.out.println(p.id + " " + p.firstName + " " + p.adharNumber);
+		}
 	}
 	}
 
