@@ -1,10 +1,10 @@
 package com.nisum.bean;
 	public class Person implements Comparable<Person>{
 
-		public int id;
-		public long adharNumber;
-		public String firstName;
-		public String lastName;
+		private int id;
+		private long adharNumber;
+		private String firstName;
+		private String lastName;
 		public int getId() {
 			return id;
 		}

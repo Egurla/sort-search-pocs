@@ -19,7 +19,7 @@ public class LinearSearch {
 
 	private int search(List<Person> distinct,List<Person> item) {
 		Collections.sort(distinct);
-		
+		//Person p = new Person(106, 99866587, "saketh", "padigela");
 		int num=distinct.size();
 		int counter;
 		for (counter = 0; counter < num; counter++)

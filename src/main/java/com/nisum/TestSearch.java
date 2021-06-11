@@ -33,7 +33,7 @@ public class TestSearch {
 		List<Person> item = new ArrayList<Person>();
 		item.add(new Person(101, 12343234, "kumar", "oraging"));
 		int linersS = linearSearch.linearSearch(personlist, item);
-		System.err.println(personlist.get(linersS).getId() + " " + personlist.get(linersS).getFirstName() + " "
+		System.out.println(personlist.get(linersS).getId() + " " + personlist.get(linersS).getFirstName() + " "
 				+ personlist.get(linersS).getLastName() + " " + personlist.get(linersS).getAdharNumber());
 
 	}
